@@ -21,7 +21,7 @@ const Column = ({ group, cards }) => {
             />
           )}
 
-          {grouping === "user" && (
+          {grouping === "users" && (
             <img src={userAvatar} alt="User Avatar" className="user-avatar" />
           )}
 
@@ -63,7 +63,7 @@ const ColumnContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   max-height: 80vh;
-  
+
   .header-container {
     display: flex;
     justify-content: space-between;
@@ -73,8 +73,14 @@ const ColumnContainer = styled.div`
       align-items: center;
       gap: 10px;
     }
+    .user-avatar {
+      width: 23px;
+      height: 23px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
     .task-total {
-        color: #757575;
+      color: #757575;
     }
   }
   .cards-container {

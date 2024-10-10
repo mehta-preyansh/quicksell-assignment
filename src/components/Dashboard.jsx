@@ -55,7 +55,7 @@ const Dashboard = ({ loading, tasks, users }) => {
 
   useEffect(() => {
     if (grouping === "status") setGroupedCards(groupByStatus(tasks));
-    else if (grouping === "user") setGroupedCards(groupByUser(tasks));
+    else if (grouping === "users") setGroupedCards(groupByUser(tasks));
     else if (grouping === "priority") setGroupedCards(groupByPriority(tasks));
     console.log(tasks);
   }, [grouping, ordering]);
