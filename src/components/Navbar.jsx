@@ -1,16 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import downChevron from "../assets/down.svg";
 import filterIcon from "../assets/Display.svg";
 import Dropdown from "./Dropdown";
 const Navbar = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const displayButtonRef = useRef(null);
+
+   useEffect(() => {
+     const handleClickOutside = (event) => {
+       if (
+         displayButtonRef.current &&
+         !displayButtonRef.current.contains(event.target)
+       ) {
+         setIsHovered(false);
+       }
+     };
+
+     document.addEventListener("mousedown", handleClickOutside);
+     return () => {
+       document.removeEventListener("mousedown", handleClickOutside);
+     };
+   }, []);
 
   return (
     <NavbarContainer>
       <div
         className="display-button"
         onClick={() => setIsHovered((prev) => !prev)}
+        ref={displayButtonRef}
       >
         <img src={filterIcon} alt="" />
         <span>Display</span>

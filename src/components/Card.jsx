@@ -13,10 +13,12 @@ const Card = ({ cardDetails }) => {
       <div className="kanban-card-header">
         <div className="idRow">
           <p className="ticketid">{cardDetails.id}</p>
-          <div className="avatar-container">
-            <img className="avatar" src={userAvatar} alt="" />
-            <div className="online"></div>
-          </div>
+          {!(grouping === "users") && (
+            <div className="avatar-container">
+              <img className="avatar" src={userAvatar} alt="" />
+              <div className="online"></div>
+            </div>
+          )}
         </div>
 
         <div className="title-row">
@@ -33,7 +35,10 @@ const Card = ({ cardDetails }) => {
           {!(grouping === "priority") && (
             <img src={priorityIcon} alt="manual" className="manual-icon" />
           )}
-          <p className="tag">{cardDetails.tag}</p>
+          <div className="tag-wrapper">
+            <span></span>
+            <p className="tag">{cardDetails.tag}</p>
+          </div>
         </div>
       </div>
     </CardContainer>
@@ -127,11 +132,25 @@ const CardContainer = styled.div`
         height: 14px;
         margin-right: 4px;
       }
-
-      .tag {
-        font-size: 0.72em;
-        color: #555;
-        padding: 0 8px;
+      .tag-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2px 8px;
+        border-radius: 4px;
+        border: 1px solid #f1f1f1;
+        span {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: #c4c4c4;
+        }
+        .tag {
+          font-size: 0.72em;
+          color: #555;
+          padding: 0 8px;
+          margin: 0;
+        }
       }
     }
   }
